@@ -45,10 +45,10 @@ cache:
 # For example, you put your favicons into `hexo-site/source/images` directory.
 # Then need to rename & redefine they on any other names, otherwise icons from Next will rewrite your custom icons in Hexo.
 favicon:
-  small: /images/favicon-16x16-next.png
-  medium: /images/favicon-32x32-next.png
-  apple_touch_icon: /images/apple-touch-icon-next.png
-  safari_pinned_tab: /images/logo.svg
+  small: /images/favicon.jpg
+  medium: /images/favicon.jpg
+  apple_touch_icon: /images/favicon.jpg
+  safari_pinned_tab: /images/favicon.jpg
   #android_manifest: /images/manifest.json
   #ms_browserconfig: /images/browserconfig.xml
 
@@ -119,12 +119,17 @@ index_with_subtitle: false
 menu:
   home: / || home
   #about: /about/ || user
-  #tags: /tags/ || tags
-  #categories: /categories/ || th
+  tags: /tags/ || tags
+  categories: /categories/ || th
   archives: /archives/ || archive
+  #Rss: /atom.xml
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
-  #commonweal: /404/ || heartbeat
+  #commonweal: /404.html || heartbeat
+
+
+
+excerpt_link: Read More #列表页里Read more链接名称，可以替换成’查看更多‘等。
 
 # Enable/Disable menu icons / item badges.
 menu_settings:
@@ -136,9 +141,13 @@ menu_settings:
 # ---------------------------------------------------------------
 
 # Schemes
-scheme: Muse
+# 默认 Scheme，这是 NexT 最初的版本，黑白主调，大量留白
+# Muse 的紧凑版本，整洁有序的单栏外观
+#scheme: Muse
 #scheme: Mist
-#scheme: Pisces
+# 双栏 Scheme，小家碧玉似的清新
+scheme: Pisces
+# 类似 Pisces
 #scheme: Gemini
 
 
@@ -194,11 +203,11 @@ avatar:
   # in theme directory(source/images): /images/avatar.gif
   # in site  directory(source/uploads): /uploads/avatar.gif
   # You can also use other linking images.
-  url: #/images/avatar.gif
+  url: /images/avatar.jpg
   # If true, the avatar would be dispalyed in circle.
-  rounded: false
+  rounded: true
   # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.
-  opacity: 1
+  opacity: 0.7
   # If true, the avatar would be rotated with the cursor.
   rotated: false
 
@@ -234,8 +243,8 @@ sidebar:
   #  - always  expand for all pages automatically
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  Totally remove sidebar including sidebar toggle.
-  display: post
-  #display: always
+  #display: post
+  display: always
   #display: hide
   #display: remove
 
@@ -246,7 +255,7 @@ sidebar:
   b2t: false
 
   # Scroll percent label in b2t button.
-  scrollpercent: false
+  scrollpercent: true
 
   # Enable sidebar on narrow view (only for Muse | Mist).
   onmobile: false
@@ -268,7 +277,7 @@ excerpt_description: true
 # Automatically Excerpt. Not recommend.
 # Please use <!-- more --> in the post to control excerpt accurately.
 auto_excerpt:
-  enable: false
+  enable: true
   length: 150
 
 # Post meta display settings
@@ -310,9 +319,15 @@ codeblock:
 
 # Reward
 #reward_comment: Donate comment here
-#wechatpay: /images/wechatpay.jpg
-#alipay: /images/alipay.jpg
+wechatpay: http://upyun.qubianzhong.cn/picture/20180929_12:08:56.png
+#alipay: http://upyun.qubianzhong.cn/picture/20180929_12:05:22.png
 #bitcoin: /images/bitcoin.png
+## 文章末尾是否显示打赏按钮
+donate: 
+  enable: true
+  text: Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
+  alipay: 
+  wechat: http://upyun.qubianzhong.cn/picture/20180929_12:08:56.png
 
 # Related popular posts
 # Dependencies: https://github.com/tea3/hexo-related-popular-posts
@@ -362,7 +377,7 @@ custom_logo:
 # Code Highlight theme
 # Available values: normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: normal
+highlight_theme: night eighties
 
 # Enable "cheers" for archive page.
 cheers_enabled: true
@@ -430,7 +445,7 @@ font:
 
 # Math Equations Render Support
 math:
-  enable: false
+  enable: true
 
   # Default(true) will load mathjax/katex script on demand
   # That is it only render those page who has 'mathjax: true' in Front Matter.
@@ -486,28 +501,11 @@ disqus:
 # changyan
 changyan:
   enable: false
-  appid:
-  appkey:
+  appid: cytQ7rKYI
+  appkey: 02d2295f69fe9ee549ad10219ce03768
 
 
-# Valine.
-# You can get your appid and appkey from https://leancloud.cn
-# more info please open https://valine.js.org
-valine:
-  enable: false # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
-  appid:  # your leancloud application appid
-  appkey:  # your leancloud application appkey
-  notify: false # mail notifier , https://github.com/xCss/Valine/wiki
-  verify: false # Verification code
-  placeholder: Just go go # comment box placeholder
-  avatar: mm # gravatar style
-  guest_info: nick,mail,link # custom comment header
-  pageSize: 10 # pagination size
-  visitor: false # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
 
-# Support for LiveRe comments system.
-# You can get your uid from https://livere.com/insight/myCode (General web site)
-#livere_uid: your uid
 
 # Gitment
 # Introduction: https://imsun.net/posts/gitment-introduction/
@@ -629,14 +627,23 @@ rating:
 # Show number of visitors to each article.
 # You can visit https://leancloud.cn get AppID and AppKey.
 leancloud_visitors:
-  enable: false
-  app_id: #<app_id>
-  app_key: #<app_key>
-  # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
-  # If you don't care about security in lc counter and just want to use it directly
-  # (without hexo-leancloud-counter-security plugin), set the `security` to `false`.
-  security: true
-  betterPerformance: false
+  enable: true
+  app_id: 46ecF4HOtnXhWJ7AByckvSGU-gzGzoHsz
+  app_key: rgNsKKvCQk2ccK8hyqOKvATd
+  
+# Valine.
+# You can get your appid and appkey from https://leancloud.cn
+# more info please open https://valine.js.org
+valine:
+  enable: true 
+  appid: 46ecF4HOtnXhWJ7AByckvSGU-gzGzoHsz
+  appkey: rgNsKKvCQk2ccK8hyqOKvATd
+  notify: false
+  verify: false
+  placeholder: 说点什么吧
+  avatar: hide
+  guest_info: nick
+  pageSize: 10
 
 # Another tool to show number of visitors to each article.
 # visit https://console.firebase.google.com/u/0/ to get apiKey and projectId
@@ -647,17 +654,6 @@ firestore:
   apiKey: #required
   projectId: #required
   bluebird: false #enable this if you want to include bluebird 3.5.1(core version) Promise polyfill
-
-# Show Views/Visitors of the website/page with busuanzi.
-# Get more information on http://ibruce.info/2015/04/04/busuanzi/
-busuanzi_count:
-  enable: false
-  total_visitors: true
-  total_visitors_icon: user
-  total_views: true
-  total_views_icon: eye
-  post_views: true
-  post_views_icon: eye
 
 
 # Tencent analytics ID
@@ -690,6 +686,7 @@ calendar:
 # Algolia Search
 # See: https://github.com/theme-next/hexo-theme-next/blob/master/docs/ALGOLIA-SEARCH.md
 # Dependencies: https://github.com/theme-next/theme-next-algolia-instant-search
+
 algolia_search:
   enable: false
   hits:
@@ -832,7 +829,7 @@ canvas_nest: false
 # three_waves
 three_waves: false
 # canvas_lines
-canvas_lines: false
+canvas_lines: true
 # canvas_sphere
 canvas_sphere: false
 
@@ -892,8 +889,8 @@ vendors:
 
   # Internal version: 1
   # https://www.algolia.com
-  algolia_instant_js:
-  algolia_instant_css:
+  algolia_instant_js: https://cdn.jsdelivr.net/npm/instantsearch.js@2.4.1/dist/instantsearch.js
+  algolia_instant_css: https://cdn.jsdelivr.net/npm/instantsearch.js@2.4.1/dist/instantsearch.min.css
 
   # Internal version: 1.0.2
   # See: https://github.com/HubSpot/pace
@@ -949,6 +946,16 @@ vendors:
   # valine comment
   # Example: https://cdn.jsdelivr.net/npm/valine@1.1.8/dist/Valine.min.js
   valine:
+    enable: true 
+    appid: 46ecF4HOtnXhWJ7AByckvSGU-gzGzoHsz
+    appkey: rgNsKKvCQk2ccK8hyqOKvATd
+    notify: false
+    verify: false
+    placeholder: 说点什么吧
+    avatar: hide
+    guest_info: nick
+    pageSize: 10
+
 
 
 # Assets
